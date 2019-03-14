@@ -7,18 +7,18 @@ import java.util.ArrayList;
  */
 public class Lexer {
     public static enum Type {
-        // This Scheme-like language has three token types:
+        // Esse analisador reconhece 3 tipos:
         // open parens, close parens, and an "atom" type
         LPAREN, RPAREN, ATOM;
     }
     public static class Token {
         public final Type t;
-        public final String c; // contents mainly for atom tokens
-        // could have column and line number fields too, for reporting errors later
+        public final String c; 
         public Token(Type t, String c) {
             this.t = t;
             this.c = c;
         }
+        //retorna uma string do arquivo lido
         public String toString() {
             if(t == Type.ATOM) {
                 return "ATOM<" + c + ">";
@@ -28,7 +28,7 @@ public class Lexer {
     }
 
     /*
-     * Given a String, and an index, get the atom starting at that index
+     *  recebe a string e o index, percorre todos os caracteres até achar espaço, e terona a substring (palavra, encontrada)
      */
     public static String getAtom(String s, int i) {
         int j = i;
@@ -41,7 +41,8 @@ public class Lexer {
         }
         return s.substring(i, j);
     }
-
+    
+    //lista dos tokens, para cada palavra, salva-se uma posição da lista, dizendo se é LPAREN, RPAREN ou ATOM
     public static List<Token> lex(String input) {
         List<Token> result = new ArrayList<Token>();
         for(int i = 0; i < input.length(); ) {
@@ -67,7 +68,8 @@ public class Lexer {
         }
         return result;
     }
-
+    
+    //Função main
     public static void main(String[] args) {
         if(args.length < 1) {
             System.out.println("Usage: java Lexer \"((some Scheme) (code to) lex)\".");
