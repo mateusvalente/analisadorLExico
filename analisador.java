@@ -81,3 +81,33 @@ public class Lexer {
         }
     }
 }
+
+
+/*
+
+EXEMPLO DE I/O
+
+~/code/scratch $ java Lexer ""
+~/code/scratch $ java Lexer "("
+LPAREN
+~/code/scratch $ java Lexer "()"
+LPAREN
+RPAREN
+~/code/scratch $ java Lexer "(foo)"
+LPAREN
+ATOM<foo>
+RPAREN
+~/code/scratch $ java Lexer "(foo bar)"
+LPAREN
+ATOM<foo>
+ATOM<bar>
+RPAREN
+~/code/scratch $ java Lexer "(foo (bar))"
+LPAREN
+ATOM<foo>
+LPAREN
+ATOM<bar>
+RPAREN
+RPAREN
+
+*/
